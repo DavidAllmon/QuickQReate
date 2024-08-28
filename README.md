@@ -25,7 +25,7 @@
 </p>
 
 <p align="center">
-  <img src="https://your-demo-gif-url-here.gif" alt="QuickQReate Demo" width="600"/>
+  <img src="app/assets/demo.gif" alt="QuickQReate Demo" width="600"/>
 </p>
 
 ## Key Features
@@ -41,7 +41,7 @@
 
 ## Demo
 
-Check out the live demo: [QuickQReate Demo](https://your-demo-url-here.com)
+Check out the live demo: [QuickQReate Demo](https://davidallmon.github.io/QuickQReate)
 
 ## Installation
 
