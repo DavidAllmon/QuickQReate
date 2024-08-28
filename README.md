@@ -47,7 +47,7 @@ Check out the live demo: [QuickQReate Demo](https://davidallmon.github.io/QuickQ
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/quickqreate.git
+   git clone https://github.com/DavidAllmon/QuickQReate.git
    cd quickqreate
    ```
 
