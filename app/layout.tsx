@@ -8,6 +8,10 @@ const pacifico = Pacifico({ weight: ["400"], subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "QuickQReate",
   description: "QR Code Generator",
+  icons: [
+    { rel: 'icon', url: '/qricon.png' },
+    { rel: 'apple-touch-icon', url: '/qricon.png' },
+  ],
 };
 
 export default function RootLayout({
@@ -17,9 +21,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link rel="icon" href="/qricon.png" />
-      </head>
       <body className={`${inter.className} bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900`}>
         {children}
       </body>
