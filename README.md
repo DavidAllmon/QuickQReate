@@ -30,7 +30,7 @@
 
 ## Key Features
 
-- ���� **Easy-to-use interface**: Simple and intuitive design
+- 🖱️ **Easy-to-use interface**: Simple and intuitive design
 - 🔄 **Real-time preview**: See your QR code update as you make changes
 - 🌈 **Customization options**:
   - Choose foreground and background colors
