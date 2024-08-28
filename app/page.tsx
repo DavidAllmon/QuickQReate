@@ -1,9 +1,10 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { QRCodeSVG } from 'qrcode.react'
 import ColorPicker from './components/ColorPicker'
 import { Chakra_Petch } from 'next/font/google'
+import ImageUpload from './components/ImageUpload'
 
 const chakraPetch = Chakra_Petch({ weight: ["400", "700"], subsets: ["latin"] });
 
@@ -13,6 +14,7 @@ export default function Home() {
   const [bgColor, setBgColor] = useState('#1F2937')
   const [size, setSize] = useState(256)
   const [level, setLevel] = useState<'L' | 'M' | 'Q' | 'H'>('L')
+  const [logo, setLogo] = useState<string | null>(null)
 
   const downloadQRCode = () => {
     const svg = document.getElementById('qr-code')
@@ -34,6 +36,18 @@ export default function Home() {
     }
     img.src = 'data:image/svg+xml;base64,' + btoa(svgData)
   }
+
+  const handleLogoUpload = useCallback((file: File | null) => {
+    if (file) {
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        setLogo(e.target?.result as string)
+      }
+      reader.readAsDataURL(file)
+    } else {
+      setLogo(null)
+    }
+  }, [])
 
   useEffect(() => {
     document.body.className = 'bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900'
@@ -120,6 +134,9 @@ export default function Home() {
                 <option value="H">High</option>
               </select>
             </div>
+            <div className="md:col-span-2">
+              <ImageUpload onImageUpload={handleLogoUpload} />
+            </div>
           </div>
           <div className="flex justify-center mb-8">
             <div className="p-2 rounded-2xl transition-all duration-300 group">
@@ -131,6 +148,14 @@ export default function Home() {
                 fgColor={fgColor}
                 level={level}
                 includeMargin={true}
+                imageSettings={logo ? {
+                  src: logo,
+                  x: undefined,
+                  y: undefined,
+                  height: 24,
+                  width: 24,
+                  excavate: true,
+                } : undefined}
               />
               <div className="mt-4 text-center">
                 <p className="text-purple-300 text-sm">Scan me!</p>
