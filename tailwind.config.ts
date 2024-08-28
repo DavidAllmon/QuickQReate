@@ -13,6 +13,27 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      animation: {
+        float: 'float 3s ease-in-out infinite',
+        fadeIn: 'fadeIn 2s ease-in-out',
+        gradient: 'gradient 3s ease infinite',
+        pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'gradient-slow': 'gradient 8s ease infinite',
+        'float-delay-1': 'float 3s ease-in-out 1s infinite',
+        'float-delay-2': 'float 3s ease-in-out 2s infinite',
+      },
+      keyframes: {
+        gradient: {
+          '0%, 100%': {
+            'background-size': '200% 200%',
+            'background-position': 'left center'
+          },
+          '50%': {
+            'background-size': '200% 200%',
+            'background-position': 'right center'
+          }
+        }
+      },
     },
   },
   plugins: [],
