@@ -3,10 +3,10 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { QRCodeSVG } from 'qrcode.react'
 import ColorPicker from './components/ColorPicker'
-import { Chakra_Petch } from 'next/font/google'
+import { Pacifico } from 'next/font/google'
 import ImageUpload from './components/ImageUpload'
 
-const chakraPetch = Chakra_Petch({ weight: ["400", "700"], subsets: ["latin"] });
+const pacifico = Pacifico({ weight: ["400"], subsets: ["latin"] });
 
 export default function Home() {
   const [input, setInput] = useState('')
@@ -57,7 +57,7 @@ export default function Home() {
     <main className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 text-white font-sans">
       <div className="max-w-4xl mx-auto">
         <div className="mb-16 text-center">
-          <h1 className={`text-7xl font-bold mb-4 relative ${chakraPetch.className} text-center`}>
+          <h1 className={`text-7xl font-bold mb-4 relative ${pacifico.className} text-center`}>
             <span className="relative inline-block">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 animate-gradient" style={{
                 textShadow: '3px 3px 0px rgba(0,0,0,0.2), 6px 6px 0px rgba(0,0,0,0.1)',

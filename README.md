@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="app/assets/quickqr.png" alt="QuickQReate Logo" width="300"/>
+</p>
+
 # QuickQReate - QR Code Generator
 
 QuickQReate is a modern, user-friendly QR code generator web application. It allows users to quickly create customizable QR codes for various purposes, such as sharing URLs, contact information, or any text-based data.
