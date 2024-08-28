@@ -8,6 +8,13 @@ const pacifico = Pacifico({ weight: ["400"], subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "QuickQReate",
   description: "QR Code Generator",
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/qricon.png', type: 'image/png' },
+    ],
+    apple: '/qricon.png.png',
+  },
 };
 
 export default function RootLayout({
