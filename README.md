@@ -30,12 +30,13 @@
 
 ## Key Features
 
-- 🎨 **Easy-to-use interface**: Simple and intuitive design
+- ���� **Easy-to-use interface**: Simple and intuitive design
 - 🔄 **Real-time preview**: See your QR code update as you make changes
 - 🌈 **Customization options**:
   - Choose foreground and background colors
   - Adjust QR code size
   - Select error correction level
+- 🖼️ **Logo integration**: Add a custom logo to your QR code
 - 💾 **Download functionality**: Save your generated QR code as a PNG file
 - 📱 **Responsive design**: Works seamlessly on desktop and mobile devices
 
@@ -48,7 +49,7 @@ Check out the live demo: [QuickQReate Demo](https://davidallmon.github.io/QuickQ
 1. Clone the repository:
    ```bash
    git clone https://github.com/DavidAllmon/QuickQReate.git
-   cd quickqreate
+   cd QuickQReate
    ```
 
 2. Install dependencies:
@@ -70,7 +71,11 @@ Check out the live demo: [QuickQReate Demo](https://davidallmon.github.io/QuickQ
 ## Usage
 
 1. Enter the URL or text you want to encode in the input field.
-2. Customize the QR code appearance using the provided options.
+2. Customize the QR code appearance:
+   - Choose foreground and background colors using the color pickers
+   - Adjust the QR code size using the slider
+   - Select the error correction level from the dropdown
+   - Optionally upload a logo image to be placed in the center of the QR code
 3. The QR code preview will update in real-time as you make changes.
 4. Click the "Download QR Code" button to save the generated QR code as a PNG file.
 
@@ -91,5 +96,5 @@ This project is distributed under the MIT License. See the [LICENSE](LICENSE) fi
 ---
 
 <p align="center">
-  Made with ❤️ by <a href="https://github.com/your-username">Your Name</a>
+  Made with ❤️ by <a href="https://github.com/DavidAllmon">David Allmon</a>
 </p>
