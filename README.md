@@ -28,6 +28,10 @@
   <img src="app/assets/demo.gif" alt="QuickQReate Demo" width="600"/>
 </p>
 
+## Quick Deploy
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FDavidAllmon%2FQuickQReate)
+
 ## Key Features
 
 - 🖱️ **Easy-to-use interface**: Simple and intuitive design
