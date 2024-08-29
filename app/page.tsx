@@ -10,6 +10,7 @@ import NextImage from "next/image";
 import quickLogo from "./assets/quick.png";
 import { motion } from "framer-motion";
 import URLInput from "./components/URLInput";
+import { Dialog } from "@headlessui/react";
 
 export default function Home() {
   const [input, setInput] = useState("");
@@ -19,6 +20,7 @@ export default function Home() {
   const [level, setLevel] = useState<"L" | "M" | "Q" | "H">("L");
   const [logo, setLogo] = useState<string | null>(null);
   const [qrType, setQrType] = useState<"url" | "vcard" | "wifi">("url");
+  const [isErrorCorrectionModalOpen, setIsErrorCorrectionModalOpen] = useState(false);
 
   const calculateLogoSize = useCallback(() => {
     // Logo size is 20% of QR code size, with a minimum of 20px
@@ -225,9 +227,19 @@ export default function Home() {
                 </div>
               </div>
               <div>
-                <label htmlFor="level" className="mb-2 block text-sm font-medium text-purple-300">
-                  Error Correction Level
-                </label>
+                <div className="flex items-center mb-2">
+                  <label htmlFor="level" className="block text-sm font-medium text-purple-300">
+                    Error Correction Level
+                  </label>
+                  <button
+                    onClick={() => setIsErrorCorrectionModalOpen(true)}
+                    className="ml-2 text-purple-300 hover:text-purple-100 focus:outline-none"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
+                    </svg>
+                  </button>
+                </div>
                 <select
                   id="level"
                   value={level}
@@ -244,6 +256,61 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
+
+        {/* Error Correction Level Modal */}
+        <Dialog
+          open={isErrorCorrectionModalOpen}
+          onClose={() => setIsErrorCorrectionModalOpen(false)}
+          className="relative z-50"
+        >
+          <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
+          <div className="fixed inset-0 flex items-center justify-center p-4">
+            <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-gray-800 p-6 text-left align-middle shadow-xl transition-all">
+              <Dialog.Title
+                as="h3"
+                className="text-lg font-medium leading-6 text-purple-300"
+              >
+                Error Correction Level
+              </Dialog.Title>
+              <div className="mt-2">
+                <p className="text-sm text-gray-300">
+                  Error correction level is a crucial feature of QR codes that allows them to remain readable even if they are partially damaged or obscured. It determines the amount of redundant data included in the QR code, which can be used to reconstruct the original information if parts of the code are unreadable.
+                </p>
+                <p className="mt-4 text-sm text-gray-300">
+                  There are four levels of error correction:
+                </p>
+                <ul className="mt-2 list-disc list-inside text-sm text-gray-300">
+                  <li><strong>L (Low)</strong>: 7% of data can be restored. Use this for large QR codes or when you're confident the code won't be damaged.</li>
+                  <li><strong>M (Medium)</strong>: 15% of data can be restored. This is the most common level, suitable for most applications.</li>
+                  <li><strong>Q (Quartile)</strong>: 25% of data can be restored. Use this if you expect the QR code might get somewhat damaged or dirty.</li>
+                  <li><strong>H (High)</strong>: 30% of data can be restored. Use this for small QR codes or when you expect significant damage or obstruction.</li>
+                </ul>
+                <p className="mt-4 text-sm text-gray-300">
+                  Higher error correction levels increase the QR code's reliability but also increase its complexity and density. This means that for the same amount of data, a QR code with high error correction will be larger or have smaller individual squares compared to one with low error correction.
+                </p>
+                <p className="mt-4 text-sm text-gray-300">
+                  When choosing an error correction level, consider:
+                </p>
+                <ul className="mt-2 list-disc list-inside text-sm text-gray-300">
+                  <li>The environment where the QR code will be used (e.g., outdoors, on a product label)</li>
+                  <li>The expected lifespan of the QR code</li>
+                  <li>The importance of the data (e.g., critical information vs. a simple URL)</li>
+                  <li>The available space for the QR code</li>
+                </ul>
+              </div>
+
+              <div className="mt-4">
+                <button
+                  type="button"
+                  className="inline-flex justify-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white hover:bg-purple-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
+                  onClick={() => setIsErrorCorrectionModalOpen(false)}
+                >
+                  Got it, thanks!
+                </button>
+              </div>
+            </Dialog.Panel>
+          </div>
+        </Dialog>
       </div>
     </main>
   );
