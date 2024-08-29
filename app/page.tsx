@@ -6,6 +6,7 @@ import ColorPicker from './components/ColorPicker'
 import ImageUpload from './components/ImageUpload'
 import NextImage from 'next/image'
 import quickLogo from './assets/quick.png'
+import { motion } from 'framer-motion'
 
 export default function Home() {
   const [input, setInput] = useState('')
@@ -85,9 +86,19 @@ export default function Home() {
   return (
     <main className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 text-white font-sans">
       <div className="max-w-6xl mx-auto">
-        {/* Header section */}
-        <div className="mb-16 text-center">
-          <div className="flex justify-center">
+        {/* Redesigned Header section */}
+        <motion.div 
+          className="mb-16 text-center relative"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-500/20 blur-3xl"></div>
+          <motion.div 
+            className="relative"
+            whileHover={{ scale: 1.03 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
             <NextImage
               src={quickLogo}
               alt="QuickQReate Logo"
@@ -95,23 +106,26 @@ export default function Home() {
               height={0}
               style={{ height: 'auto' }}
               priority
-              onError={(e) => {
-                console.error("Error loading image:", e);
-                // You can set a fallback here if needed
-              }}
+              className="mx-auto drop-shadow-2xl"
             />
-          </div>
-          <div className="mt-8 inline-block">
-            <p className="relative text-xl font-medium py-3 px-6 rounded-full bg-opacity-10 bg-white backdrop-filter backdrop-blur-sm border border-transparent" style={{
-              backgroundImage: 'linear-gradient(rgba(255,255,255,0.05), rgba(255,255,255,0.05))',
-              boxShadow: '0 0 0 1px rgba(255,255,255,0.2) inset'
-            }}>
+          </motion.div>
+          <motion.div 
+            className="mt-6 inline-block"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+          >
+            <p className="relative text-lg font-medium py-2 px-6 rounded-full bg-opacity-10 bg-white backdrop-filter backdrop-blur-sm border border-white/20" 
+               style={{
+                 backgroundImage: 'linear-gradient(rgba(255,255,255,0.05), rgba(255,255,255,0.05))',
+                 boxShadow: '0 0 15px rgba(123, 31, 162, 0.4)'
+               }}>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-pink-300 to-indigo-300">
                 Generate QR codes in a snap
               </span>
             </p>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
         
         {/* Main content */}
         <div className="bg-gray-800 bg-opacity-50 backdrop-filter backdrop-blur-lg shadow-2xl rounded-2xl p-8 transition-all duration-300 hover:shadow-purple-500/30">
