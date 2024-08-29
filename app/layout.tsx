@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     description: "Create customizable QR codes for URLs, contact information, Wi-Fi networks, and more with ease.",
     images: [
       {
-        url: "https://davidallmon.github.io/QuickQReate/qricon.png",
+        url: "https://davidallmon.github.io/QuickQReate/quickqrSM.png",
         width: 1200,
         height: 630,
         alt: "QuickQReate - QR Code Generator",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "QuickQReate - QR Code Generator",
     description: "Create customizable QR codes for URLs, contact information, Wi-Fi networks, and more with ease.",
-    images: ["https://davidallmon.github.io/QuickQReate/qricon.png"],
+    images: ["https://davidallmon.github.io/QuickQReate/quickqrSM.png"],
     creator: "@YourTwitterHandle",
   },
   icons: {
