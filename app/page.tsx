@@ -235,7 +235,7 @@ export default function Home() {
                     onClick={() => setIsErrorCorrectionModalOpen(true)}
                     className="ml-2 text-purple-300 hover:text-purple-100 focus:outline-none"
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="size-5" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
                     </svg>
                   </button>
@@ -265,7 +265,7 @@ export default function Home() {
         >
           <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
           <div className="fixed inset-0 flex items-center justify-center p-4">
-            <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-gray-800 p-6 text-left align-middle shadow-xl transition-all">
+            <Dialog.Panel className="w-full max-w-md overflow-hidden rounded-2xl bg-gray-800 p-6 text-left align-middle shadow-xl transition-all">
               <Dialog.Title
                 as="h3"
                 className="text-lg font-medium leading-6 text-purple-300"
@@ -280,13 +280,13 @@ export default function Home() {
                   There are four levels of error correction:
                 </p>
                 <ul className="mt-2 list-disc list-inside text-sm text-gray-300">
-                  <li><strong>L (Low)</strong>: 7% of data can be restored. Use this for large QR codes or when you're confident the code won't be damaged.</li>
+                  <li><strong>L (Low)</strong>: 7% of data can be restored. Use this for large QR codes or when you&apos;re confident the code won&apos;t be damaged.</li>
                   <li><strong>M (Medium)</strong>: 15% of data can be restored. This is the most common level, suitable for most applications.</li>
                   <li><strong>Q (Quartile)</strong>: 25% of data can be restored. Use this if you expect the QR code might get somewhat damaged or dirty.</li>
                   <li><strong>H (High)</strong>: 30% of data can be restored. Use this for small QR codes or when you expect significant damage or obstruction.</li>
                 </ul>
                 <p className="mt-4 text-sm text-gray-300">
-                  Higher error correction levels increase the QR code's reliability but also increase its complexity and density. This means that for the same amount of data, a QR code with high error correction will be larger or have smaller individual squares compared to one with low error correction.
+                  Higher error correction levels increase the QR code&apos;s reliability but also increase its complexity and density. This means that for the same amount of data, a QR code with high error correction will be larger or have smaller individual squares compared to one with low error correction.
                 </p>
                 <p className="mt-4 text-sm text-gray-300">
                   When choosing an error correction level, consider:
