@@ -351,8 +351,8 @@ export default function Home() {
                   </p>
                   <ul className="list-disc list-inside space-y-2">
                     <li><strong>File Type:</strong> While all image types are accepted, PNG or SVG are recommended for best results due to their support for transparency and scalability.</li>
-                    <li><strong>Size:</strong> The logo will be resized to approximately 20% of the QR code's size. For best results, use a square image.</li>
-                    <li><strong>Resolution:</strong> Use a high enough resolution for clarity, but be mindful that very large files may affect the QR code's scannability.</li>
+                    <li><strong>Size:</strong> The logo will be resized to approximately 20% of the QR code&apos;s size. For best results, use a square image.</li>
+                    <li><strong>Resolution:</strong> Use a high enough resolution for clarity, but be mindful that very large files may affect the QR code&apos;s scannability.</li>
                     <li><strong>Color:</strong> Ensure your logo has good contrast with the QR code colors for best visibility.</li>
                     <li><strong>Placement:</strong> The logo will always be centered in the QR code.</li>
                   </ul>
