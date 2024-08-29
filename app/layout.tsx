@@ -5,6 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://davidallmon.github.io/QuickQReate/'),
   title: "QuickQReate",
   description: "Create customizable QR codes for URLs, contact information, Wi-Fi networks, and more with ease.",
   openGraph: {
@@ -12,13 +13,13 @@ export const metadata: Metadata = {
     description: "Create customizable QR codes for URLs, contact information, Wi-Fi networks, and more with ease.",
     images: [
       {
-        url: "/qricon.png",
+        url: "https://davidallmon.github.io/QuickQReate/qricon.png",
         width: 1200,
         height: 630,
         alt: "QuickQReate - QR Code Generator",
       },
     ],
-    url: "/",
+    url: "https://davidallmon.github.io/QuickQReate/",
     siteName: "QuickQReate",
     locale: "en_US",
     type: "website",
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "QuickQReate - QR Code Generator",
     description: "Create customizable QR codes for URLs, contact information, Wi-Fi networks, and more with ease.",
-    images: ["/qricon.png"],
+    images: ["https://davidallmon.github.io/QuickQReate/qricon.png"],
     creator: "@YourTwitterHandle",
   },
   icons: {
