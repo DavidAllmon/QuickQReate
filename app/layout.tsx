@@ -6,13 +6,36 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "QuickQReate",
-  description: "QR Code Generator",
+  description: "Create customizable QR codes for URLs, contact information, Wi-Fi networks, and more with ease.",
+  openGraph: {
+    title: "QuickQReate - QR Code Generator",
+    description: "Create customizable QR codes for URLs, contact information, Wi-Fi networks, and more with ease.",
+    images: [
+      {
+        url: "/qricon.png",
+        width: 1200,
+        height: 630,
+        alt: "QuickQReate - QR Code Generator",
+      },
+    ],
+    url: "/",
+    siteName: "QuickQReate",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "QuickQReate - QR Code Generator",
+    description: "Create customizable QR codes for URLs, contact information, Wi-Fi networks, and more with ease.",
+    images: ["/qricon.png"],
+    creator: "@YourTwitterHandle",
+  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
       { url: "/qricon.png", type: "image/png" },
     ],
-    apple: "/qricon.png.png",
+    apple: "/qricon.png",
   },
 };
 
