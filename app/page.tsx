@@ -15,6 +15,11 @@ export default function Home() {
   const [level, setLevel] = useState<'L' | 'M' | 'Q' | 'H'>('L')
   const [logo, setLogo] = useState<string | null>(null)
 
+  const calculateLogoSize = useCallback(() => {
+    // Logo size is 20% of QR code size, with a minimum of 20px
+    return Math.max(Math.floor(size * 0.2), 20);
+  }, [size]);
+
   const downloadQRCode = () => {
     const svg = document.getElementById('qr-code');
     if (svg) {
@@ -23,19 +28,19 @@ export default function Home() {
       const ctx = canvas.getContext('2d');
       const img = new Image();
       img.onload = () => {
-        canvas.width = qrCodeSize;
-        canvas.height = qrCodeSize;
+        canvas.width = size;
+        canvas.height = size;
         ctx!.fillStyle = bgColor;
-        ctx!.fillRect(0, 0, qrCodeSize, qrCodeSize);
-        ctx!.drawImage(img, 0, 0, qrCodeSize, qrCodeSize);
+        ctx!.fillRect(0, 0, size, size);
+        ctx!.drawImage(img, 0, 0, size, size);
         
         // Draw logo if it exists
         if (logo) {
           const logoImg = new Image();
           logoImg.onload = () => {
-            const logoSize = qrCodeSize * 0.2; // Logo size is 20% of QR code size
-            const logoX = (qrCodeSize - logoSize) / 2;
-            const logoY = (qrCodeSize - logoSize) / 2;
+            const logoSize = calculateLogoSize();
+            const logoX = (size - logoSize) / 2;
+            const logoY = (size - logoSize) / 2;
             ctx!.drawImage(logoImg, logoX, logoY, logoSize, logoSize);
             
             // Save the final image
@@ -179,8 +184,8 @@ export default function Home() {
                     src: logo,
                     x: undefined,
                     y: undefined,
-                    height: 24,
-                    width: 24,
+                    height: calculateLogoSize(),
+                    width: calculateLogoSize(),
                     excavate: true,
                   } : undefined}
                 />
