@@ -90,7 +90,7 @@ export default function Home() {
       "bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900";
   }, []);
 
-  const qrCodeSize = size; // Use the size from state
+  const previewSize = 256; // Fixed size for preview
 
   useEffect(() => {
     setInput('');
@@ -155,13 +155,13 @@ export default function Home() {
             <h2 className="mb-4 text-xl font-semibold text-purple-300">QR Code Preview</h2>
             <div
               className="relative mb-6"
-              style={{ width: qrCodeSize, height: qrCodeSize }}
+              style={{ width: previewSize, height: previewSize }}
             >
               <div 
                 className="absolute inset-0 blur-md rounded-lg bg-purple-500 opacity-30"
                 style={{ 
-                  width: qrCodeSize + 10, 
-                  height: qrCodeSize + 10, 
+                  width: previewSize + 10, 
+                  height: previewSize + 10, 
                   left: -5, 
                   top: -5 
                 }}
@@ -170,7 +170,7 @@ export default function Home() {
                 <QRCodeSVG
                   id="qr-code"
                   value={input || "https://example.com"}
-                  size={qrCodeSize}
+                  size={previewSize}
                   bgColor={bgColor}
                   fgColor={fgColor}
                   level={level}
@@ -181,8 +181,8 @@ export default function Home() {
                           src: logo,
                           x: undefined,
                           y: undefined,
-                          height: calculateLogoSize(),
-                          width: calculateLogoSize(),
+                          height: Math.max(Math.floor(previewSize * 0.2), 20),
+                          width: Math.max(Math.floor(previewSize * 0.2), 20),
                           excavate: true,
                         }
                       : undefined
@@ -218,7 +218,7 @@ export default function Home() {
                     type="range"
                     id="size"
                     min="128"
-                    max="512"
+                    max="1024"
                     value={size}
                     onChange={(e) => setSize(Number(e.target.value))}
                     className="mr-4 w-full accent-purple-500"
