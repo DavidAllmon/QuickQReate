@@ -3,10 +3,9 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { QRCodeSVG } from 'qrcode.react'
 import ColorPicker from './components/ColorPicker'
-import { Pacifico } from 'next/font/google'
 import ImageUpload from './components/ImageUpload'
-
-const pacifico = Pacifico({ weight: ["400"], subsets: ["latin"] });
+import NextImage from 'next/image'
+import quickLogo from './assets/quick.png'
 
 export default function Home() {
   const [input, setInput] = useState('')
@@ -57,23 +56,20 @@ export default function Home() {
     <main className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 text-white font-sans">
       <div className="max-w-4xl mx-auto">
         <div className="mb-16 text-center">
-          <h1 className={`text-7xl font-bold mb-4 relative ${pacifico.className} text-center`}>
-            <span className="relative inline-block">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 animate-gradient" style={{
-                textShadow: '3px 3px 0px rgba(0,0,0,0.2), 6px 6px 0px rgba(0,0,0,0.1)',
-                WebkitTextStroke: '1px rgba(255,255,255,0.1)'
-              }}>
-                Quick
-                <span className="relative inline-block px-1 text-white" style={{
-                  textShadow: '0 0 10px rgba(255,255,255,0.7), 0 0 20px rgba(255,255,255,0.5), 0 0 30px rgba(255,255,255,0.3)',
-                  WebkitTextStroke: '2px rgba(128,0,128,0.8)'
-                }}>
-                  QR
-                </span>
-                eate
-              </span>
-            </span>
-          </h1>
+          <div className="flex justify-center">
+            <NextImage
+              src={quickLogo}
+              alt="QuickQReate Logo"
+              width={400}
+              height={0}
+              style={{ height: 'auto' }}
+              priority
+              onError={(e) => {
+                console.error("Error loading image:", e);
+                // You can set a fallback here if needed
+              }}
+            />
+          </div>
           <div className="mt-8 inline-block">
             <p className="relative text-xl font-medium py-3 px-6 rounded-full bg-opacity-10 bg-white backdrop-filter backdrop-blur-sm border border-transparent" style={{
               backgroundImage: 'linear-gradient(rgba(255,255,255,0.05), rgba(255,255,255,0.05))',

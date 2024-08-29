@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="app/assets/quickqr.png" alt="QuickQReate Logo" width="300"/>
+  <img src="app/assets/quick.png" alt="QuickQReate Logo" width="300"/>
 </p>
 
 <h1 align="center">QuickQReate - QR Code Generator</h1>
