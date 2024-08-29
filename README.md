@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <strong>QuickQReate</strong> is a modern, user-friendly QR code generator web application. Create customizable QR codes for URLs, contact information, or any text-based data with ease.
+  <strong>QuickQReate</strong> is a modern, user-friendly QR code generator web application. Create customizable QR codes for URLs, contact information, Wi-Fi networks, or any text-based data with ease.
 </p>
 
 <p align="center">
@@ -43,6 +43,15 @@
 - 🖼️ **Logo integration**: Add a custom logo to your QR code
 - 💾 **Download functionality**: Save your generated QR code as a PNG file
 - 📱 **Responsive design**: Works seamlessly on desktop and mobile devices
+- 🔗 **Multiple QR code types**:
+  - URL or Text
+  - vCard (Contact Information)
+  - Wi-Fi Network
+- 🎨 **Stylish UI**: Modern design with smooth animations and gradient backgrounds
+- 🔒 **Error correction**: Choose from Low, Medium, Quartile, and High error correction levels
+- 🖌️ **Custom color pickers**: Easy-to-use color selection for foreground and background
+- 📏 **Size adjustment**: Slider for precise QR code size control
+- 🏞️ **Logo preview**: See how your logo looks on the QR code before downloading
 
 ## Demo
 
@@ -77,14 +86,15 @@ Check out the live demo: [QuickQReate Demo](https://davidallmon.github.io/QuickQ
 
 ## Usage
 
-1. Enter the URL or text you want to encode in the input field.
-2. Customize the QR code appearance:
+1. Choose the QR code type: URL/Text, vCard, or Wi-Fi Network.
+2. Enter the required information for the selected QR code type.
+3. Customize the QR code appearance:
    - Choose foreground and background colors using the color pickers
    - Adjust the QR code size using the slider
    - Select the error correction level from the dropdown
    - Optionally upload a logo image to be placed in the center of the QR code
-3. The QR code preview will update in real-time as you make changes.
-4. Click the "Download QR Code" button to save the generated QR code as a PNG file.
+4. The QR code preview will update in real-time as you make changes.
+5. Click the "Download QR Code" button to save the generated QR code as a PNG file.
 
 ## Contributing
 

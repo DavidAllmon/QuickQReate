@@ -4,9 +4,12 @@ import React, { useState, useEffect, useCallback } from "react";
 import { QRCodeSVG } from "qrcode.react";
 import ColorPicker from "./components/ColorPicker";
 import ImageUpload from "./components/ImageUpload";
+import VCardInput from "./components/VCardInput";
+import WiFiInput from "./components/WiFiInput";
 import NextImage from "next/image";
 import quickLogo from "./assets/quick.png";
 import { motion } from "framer-motion";
+import URLInput from "./components/URLInput";
 
 export default function Home() {
   const [input, setInput] = useState("");
@@ -15,6 +18,7 @@ export default function Home() {
   const [size, setSize] = useState(256);
   const [level, setLevel] = useState<"L" | "M" | "Q" | "H">("L");
   const [logo, setLogo] = useState<string | null>(null);
+  const [qrType, setQrType] = useState<"url" | "vcard" | "wifi">("url");
 
   const calculateLogoSize = useCallback(() => {
     // Logo size is 20% of QR code size, with a minimum of 20px
@@ -84,89 +88,125 @@ export default function Home() {
 
   const qrCodeSize = size; // Use the size from state
 
+  useEffect(() => {
+    setInput('');
+  }, [qrType]);
+
   return (
-    <main className="min-h-screen px-4 py-12 font-sans text-white sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl">
-        {/* Redesigned Header section */}
+    <main className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900 px-4 py-8 font-sans text-white sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl">
+        {/* Compact Header with only the image logo */}
         <motion.div
-          className="relative mb-16 text-center"
+          className="mb-8 flex items-center justify-center"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-500/20 blur-3xl"></div>
-          <motion.div
-            className="relative"
-            whileHover={{ scale: 1.03 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
-            <NextImage
-              src={quickLogo}
-              alt="QuickQReate Logo"
-              width={400}
-              height={0}
-              style={{ height: "auto" }}
-              priority
-              className="mx-auto drop-shadow-2xl"
-            />
-          </motion.div>
-          <motion.div
-            className="mt-6 inline-block"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-          >
-            <p
-              className="relative rounded-full border border-white/20 bg-white/10 px-6 py-2 text-lg font-medium backdrop-blur-sm"
-              style={{
-                backgroundImage:
-                  "linear-gradient(rgba(255,255,255,0.05), rgba(255,255,255,0.05))",
-                boxShadow: "0 0 15px rgba(123, 31, 162, 0.4)",
-              }}
-            >
-              <span className="bg-gradient-to-r from-purple-300 via-pink-300 to-indigo-300 bg-clip-text text-transparent">
-                Generate QR codes in a snap
-              </span>
-            </p>
-          </motion.div>
+          <NextImage
+            src={quickLogo}
+            alt="QuickQReate Logo"
+            width={300}
+            height={0}
+            style={{ height: "auto" }}
+            priority
+            className="drop-shadow-2xl"
+          />
         </motion.div>
 
-        {/* Main content */}
-        <div className="rounded-2xl bg-gray-800/50 p-8 shadow-2xl backdrop-blur-lg transition-all duration-300 hover:shadow-purple-500/30">
-          <div className="flex flex-col gap-8 md:flex-row">
-            {/* Left column: Input controls */}
-            <div className="space-y-6 md:w-1/2">
-              <div>
-                <label
-                  htmlFor="input"
-                  className="mb-2 block text-lg font-medium text-purple-300"
-                >
-                  Enter URL or text
-                </label>
-                <input
-                  type="text"
-                  id="input"
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  className="w-full rounded-lg border border-gray-600 bg-gray-700 px-4 py-3 text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  placeholder="https://example.com"
+        {/* Main Content */}
+        <div className="grid gap-8 md:grid-cols-3">
+          {/* Left Column: QR Type and Input */}
+          <motion.div
+            className="rounded-2xl bg-gray-800/50 p-6 shadow-2xl backdrop-blur-lg"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <h2 className="mb-4 text-xl font-semibold text-purple-300">QR Code Content</h2>
+            <div className="space-y-4">
+              <select
+                id="qrType"
+                value={qrType}
+                onChange={(e) => setQrType(e.target.value as "url" | "vcard" | "wifi")}
+                className="w-full rounded-lg border border-gray-600 bg-gray-700 px-4 py-3 text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              >
+                <option value="url">URL or Text</option>
+                <option value="vcard">vCard (Contact Information)</option>
+                <option value="wifi">Wi-Fi Network</option>
+              </select>
+
+              {qrType === "url" && <URLInput value={input} onChange={setInput} />}
+              {qrType === "vcard" && <VCardInput onVCardGenerated={setInput} />}
+              {qrType === "wifi" && <WiFiInput onWiFiGenerated={setInput} />}
+            </div>
+          </motion.div>
+
+          {/* Middle Column: QR Code Preview and Download */}
+          <motion.div
+            className="order-last md:order-none flex flex-col items-center justify-between rounded-2xl bg-gray-800/50 p-6 shadow-2xl backdrop-blur-lg"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <h2 className="mb-4 text-xl font-semibold text-purple-300">QR Code Preview</h2>
+            <div
+              className="relative mb-6"
+              style={{ width: qrCodeSize, height: qrCodeSize }}
+            >
+              <div 
+                className="absolute inset-0 blur-md rounded-lg bg-purple-500 opacity-30"
+                style={{ 
+                  width: qrCodeSize + 10, 
+                  height: qrCodeSize + 10, 
+                  left: -5, 
+                  top: -5 
+                }}
+              ></div>
+              <div className="relative">
+                <QRCodeSVG
+                  id="qr-code"
+                  value={input || "https://example.com"}
+                  size={qrCodeSize}
+                  bgColor={bgColor}
+                  fgColor={fgColor}
+                  level={level}
+                  includeMargin={true}
+                  imageSettings={
+                    logo
+                      ? {
+                          src: logo,
+                          x: undefined,
+                          y: undefined,
+                          height: calculateLogoSize(),
+                          width: calculateLogoSize(),
+                          excavate: true,
+                        }
+                      : undefined
+                  }
                 />
               </div>
-              <ColorPicker
-                label="Foreground Color"
-                color={fgColor}
-                onChange={setFgColor}
-              />
-              <ColorPicker
-                label="Background Color"
-                color={bgColor}
-                onChange={setBgColor}
-              />
+            </div>
+            <button
+              onClick={downloadQRCode}
+              className="w-full rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 px-6 py-3 text-lg font-semibold text-white transition-all duration-300 hover:scale-105 hover:from-purple-600 hover:to-pink-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-800"
+            >
+              Download QR Code
+            </button>
+          </motion.div>
+
+          {/* Right Column: Customization Options */}
+          <motion.div
+            className="rounded-2xl bg-gray-800/50 p-6 shadow-2xl backdrop-blur-lg"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            <h2 className="mb-4 text-xl font-semibold text-purple-300">Customize</h2>
+            <div className="space-y-6">
+              <ColorPicker label="Foreground Color" color={fgColor} onChange={setFgColor} />
+              <ColorPicker label="Background Color" color={bgColor} onChange={setBgColor} />
               <div>
-                <label
-                  htmlFor="size"
-                  className="mb-2 block text-lg font-medium text-purple-300"
-                >
+                <label htmlFor="size" className="mb-2 block text-sm font-medium text-purple-300">
                   Size
                 </label>
                 <div className="flex items-center">
@@ -185,18 +225,13 @@ export default function Home() {
                 </div>
               </div>
               <div>
-                <label
-                  htmlFor="level"
-                  className="mb-2 block text-lg font-medium text-purple-300"
-                >
+                <label htmlFor="level" className="mb-2 block text-sm font-medium text-purple-300">
                   Error Correction Level
                 </label>
                 <select
                   id="level"
                   value={level}
-                  onChange={(e) =>
-                    setLevel(e.target.value as "L" | "M" | "Q" | "H")
-                  }
+                  onChange={(e) => setLevel(e.target.value as "L" | "M" | "Q" | "H")}
                   className="w-full rounded-lg border border-gray-600 bg-gray-700 px-4 py-3 text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
                 >
                   <option value="L">Low</option>
@@ -207,55 +242,7 @@ export default function Home() {
               </div>
               <ImageUpload onImageUpload={handleLogoUpload} />
             </div>
-
-            {/* Right column: QR Code and Download button */}
-            <div className="flex flex-col items-center justify-between md:w-1/2">
-              <div
-                className="mb-8 relative"
-                style={{ width: qrCodeSize, height: qrCodeSize }}
-              >
-                {/* Reduced glow effect */}
-                <div 
-                  className="absolute inset-0 blur-md bg-purple-500 opacity-30 rounded-lg"
-                  style={{ 
-                    width: qrCodeSize + 10, 
-                    height: qrCodeSize + 10, 
-                    left: -5, 
-                    top: -5 
-                  }}
-                ></div>
-                <div className="relative">
-                  <QRCodeSVG
-                    id="qr-code"
-                    value={input || "https://example.com"}
-                    size={qrCodeSize}
-                    bgColor={bgColor}
-                    fgColor={fgColor}
-                    level={level}
-                    includeMargin={true}
-                    imageSettings={
-                      logo
-                        ? {
-                            src: logo,
-                            x: undefined,
-                            y: undefined,
-                            height: calculateLogoSize(),
-                            width: calculateLogoSize(),
-                            excavate: true,
-                          }
-                        : undefined
-                    }
-                  />
-                </div>
-              </div>
-              <button
-                onClick={downloadQRCode}
-                className="w-full rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 px-6 py-3 text-lg font-semibold text-white transition-all duration-300 hover:scale-105 hover:from-purple-600 hover:to-pink-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-800"
-              >
-                Download QR Code
-              </button>
-            </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </main>
