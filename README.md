@@ -51,12 +51,14 @@ Check out the live demo: [QuickQReate Demo](https://davidallmon.github.io/QuickQ
 ## Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/DavidAllmon/QuickQReate.git
    cd QuickQReate
    ```
 
 2. Install dependencies:
+
    ```bash
    npm install
    # or
@@ -64,6 +66,7 @@ Check out the live demo: [QuickQReate Demo](https://davidallmon.github.io/QuickQ
    ```
 
 3. Run the development server:
+
    ```bash
    npm run dev
    # or

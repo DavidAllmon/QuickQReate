@@ -1,31 +1,35 @@
-import React from 'react'
+import React from "react";
 
 interface ColorPickerProps {
-  label: string
-  color: string
-  onChange: (color: string) => void
+  label: string;
+  color: string;
+  onChange: (color: string) => void;
 }
 
-const ColorPicker: React.FC<ColorPickerProps> = ({ label, color, onChange }) => {
+const ColorPicker: React.FC<ColorPickerProps> = ({
+  label,
+  color,
+  onChange,
+}) => {
   return (
     <div>
-      <label className="block text-sm font-medium mb-2">{label}</label>
+      <label className="mb-2 block text-sm font-medium">{label}</label>
       <div className="flex items-center">
         <input
           type="color"
           value={color}
           onChange={(e) => onChange(e.target.value)}
-          className="w-8 h-8 border border-gray-600 rounded mr-2"
+          className="mr-2 size-8 rounded border border-gray-600"
         />
         <input
           type="text"
           value={color}
           onChange={(e) => onChange(e.target.value)}
-          className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
+          className="w-full rounded-md border border-gray-600 bg-gray-700 px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ColorPicker
+export default ColorPicker;

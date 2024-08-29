@@ -1,5 +1,5 @@
-import React, { useCallback, useState } from 'react';
-import Image from 'next/image';
+import React, { useCallback, useState } from "react";
+import Image from "next/image";
 
 interface ImageUploadProps {
   onImageUpload: (file: File | null) => void;
@@ -8,17 +8,20 @@ interface ImageUploadProps {
 const ImageUpload: React.FC<ImageUploadProps> = ({ onImageUpload }) => {
   const [preview, setPreview] = useState<string | null>(null);
 
-  const handleFileChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      onImageUpload(file);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreview(reader.result as string);
-      };
-      reader.readAsDataURL(file);
-    }
-  }, [onImageUpload]);
+  const handleFileChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const file = event.target.files?.[0];
+      if (file) {
+        onImageUpload(file);
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setPreview(reader.result as string);
+        };
+        reader.readAsDataURL(file);
+      }
+    },
+    [onImageUpload],
+  );
 
   const handleRemove = useCallback(() => {
     setPreview(null);
@@ -27,13 +30,16 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onImageUpload }) => {
 
   return (
     <div className="mb-8">
-      <label htmlFor="logo-upload" className="block text-lg font-medium mb-2 text-purple-300">
+      <label
+        htmlFor="logo-upload"
+        className="mb-2 block text-lg font-medium text-purple-300"
+      >
         Upload Logo (optional)
       </label>
       <div className="flex items-center space-x-4">
         <label
           htmlFor="logo-upload"
-          className="cursor-pointer bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300"
+          className="cursor-pointer rounded bg-purple-600 px-4 py-2 font-bold text-white transition-colors duration-300 hover:bg-purple-700"
         >
           Choose Image
           <input
@@ -55,7 +61,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onImageUpload }) => {
             />
             <button
               onClick={handleRemove}
-              className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600 transition-colors duration-300"
+              className="absolute -right-2 -top-2 flex size-5 items-center justify-center rounded-full bg-red-500 text-xs text-white transition-colors duration-300 hover:bg-red-600"
             >
               ×
             </button>
@@ -63,7 +69,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onImageUpload }) => {
         )}
       </div>
       {!preview && (
-        <p className="text-sm text-gray-400 mt-2">No image selected</p>
+        <p className="mt-2 text-sm text-gray-400">No image selected</p>
       )}
     </div>
   );
