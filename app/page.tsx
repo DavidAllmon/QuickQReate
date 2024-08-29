@@ -21,6 +21,7 @@ export default function Home() {
   const [logo, setLogo] = useState<string | null>(null);
   const [qrType, setQrType] = useState<"url" | "vcard" | "wifi">("url");
   const [isErrorCorrectionModalOpen, setIsErrorCorrectionModalOpen] = useState(false);
+  const [isLogoInfoModalOpen, setIsLogoInfoModalOpen] = useState(false);
 
   const calculateLogoSize = useCallback(() => {
     // Logo size is 20% of QR code size, with a minimum of 20px
@@ -252,7 +253,22 @@ export default function Home() {
                   <option value="H">High</option>
                 </select>
               </div>
-              <ImageUpload onImageUpload={handleLogoUpload} />
+              <div>
+                <div className="flex items-center mb-2">
+                  <label htmlFor="logo-upload" className="block text-sm font-medium text-purple-300">
+                    Upload Logo (optional)
+                  </label>
+                  <button
+                    onClick={() => setIsLogoInfoModalOpen(true)}
+                    className="ml-2 text-purple-300 hover:text-purple-100 focus:outline-none"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="size-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
+                    </svg>
+                  </button>
+                </div>
+                <ImageUpload onImageUpload={handleLogoUpload} />
+              </div>
             </div>
           </motion.div>
         </div>
@@ -305,6 +321,51 @@ export default function Home() {
                   type="button"
                   className="inline-flex justify-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white hover:bg-purple-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
                   onClick={() => setIsErrorCorrectionModalOpen(false)}
+                >
+                  Got it, thanks!
+                </button>
+              </div>
+            </Dialog.Panel>
+          </div>
+        </Dialog>
+
+        {/* Logo Info Modal */}
+        <Dialog
+          open={isLogoInfoModalOpen}
+          onClose={() => setIsLogoInfoModalOpen(false)}
+          className="relative z-50"
+        >
+          <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
+          <div className="fixed inset-0 flex items-center justify-center p-4">
+            <Dialog.Panel className="w-full max-w-md max-h-[90vh] overflow-hidden rounded-2xl bg-gray-800 shadow-xl transition-all">
+              <div className="p-6 overflow-y-auto max-h-[calc(90vh-4rem)]">
+                <Dialog.Title
+                  as="h3"
+                  className="text-lg font-medium leading-6 text-purple-300 mb-4"
+                >
+                  Logo Upload Information
+                </Dialog.Title>
+                <div className="mt-2 space-y-4 text-sm text-gray-300">
+                  <p>
+                    Adding a logo to your QR code can make it more visually appealing and branded. However, there are some considerations to keep in mind:
+                  </p>
+                  <ul className="list-disc list-inside space-y-2">
+                    <li><strong>File Type:</strong> While all image types are accepted, PNG or SVG are recommended for best results due to their support for transparency and scalability.</li>
+                    <li><strong>Size:</strong> The logo will be resized to approximately 20% of the QR code's size. For best results, use a square image.</li>
+                    <li><strong>Resolution:</strong> Use a high enough resolution for clarity, but be mindful that very large files may affect the QR code's scannability.</li>
+                    <li><strong>Color:</strong> Ensure your logo has good contrast with the QR code colors for best visibility.</li>
+                    <li><strong>Placement:</strong> The logo will always be centered in the QR code.</li>
+                  </ul>
+                  <p>
+                    Remember that adding a logo reduces the error correction capacity of your QR code. Consider using a higher error correction level when adding a logo.
+                  </p>
+                </div>
+              </div>
+              <div className="bg-gray-700 px-6 py-4 flex justify-end">
+                <button
+                  type="button"
+                  className="inline-flex justify-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white hover:bg-purple-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
+                  onClick={() => setIsLogoInfoModalOpen(false)}
                 >
                   Got it, thanks!
                 </button>

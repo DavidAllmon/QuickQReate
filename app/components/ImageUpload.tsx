@@ -29,13 +29,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onImageUpload }) => {
   }, [onImageUpload]);
 
   return (
-    <div className="mb-8">
-      <label
-        htmlFor="logo-upload"
-        className="mb-2 block text-lg font-medium text-purple-300"
-      >
-        Upload Logo (optional)
-      </label>
+    <div>
       <div className="flex items-center space-x-4">
         <label
           htmlFor="logo-upload"
@@ -73,6 +67,6 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onImageUpload }) => {
       )}
     </div>
   );
-};
+}
 
 export default ImageUpload;
