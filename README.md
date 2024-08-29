@@ -25,7 +25,7 @@
 </p>
 
 <p align="center">
-  <img src="app/assets/demo.gif" alt="QuickQReate Demo" width="600"/>
+  <img src="app/assets/demo1.gif" alt="QuickQReate Demo" width="600"/>
 </p>
 
 ## Quick Deploy
